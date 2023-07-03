@@ -1,0 +1,85 @@
+{
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist",
+    "withGlobalTauri": false
+  },
+  "package": {
+    "productName": "naveo",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": false,
+        "execute": true,
+        "open": true,
+        "sidecar": true,
+        "scope": [
+          {
+            "name": "binaries/visorkit",
+            "sidecar": true,
+            "args": true
+          },
+          {
+            "name": "binaries/portkit",
+            "sidecar": true,
+            "args": true
+          },
+          {
+            "name": "run-dd-command",
+            "cmd": "dd",
+            "args": true
+          }
+        ]
+      },
+      "path": {
+        "all": true
+      },
+      "window": {
+        "startDragging": true
+      },
+      "fs": {
+        "all": true,
+        "scope": ["$HOME/**", "$RESOURCE/**"]
+      }
+    },
+    "bundle": {
+      "externalBin": ["binaries/visorkit", "binaries/portkit"],
+      "resources": ["configs/*", "linux/*", "vms/*"],
+      "active": true,
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "naveo.dev",
+      "targets": "all"
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": true,
+        "title": "",
+        "width": 1270,
+        "height": 720,
+        "titleBarStyle": "Overlay"
+      }
+    ],
+    "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    }
+  }
+}

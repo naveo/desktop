@@ -1,0 +1,13 @@
+{
+  "vmlinuz": "/Applications/naveo.app/Contents/Resources/linux/naveo-kernel",
+  "initrd": "/Applications/naveo.app/Contents/Resources/linux/naveo-initrd.img",
+  "disk": "/Applications/naveo.app/Contents/Resources/vms/storage.img",
+  "iso": "",
+  "vzUsers": "/Users",
+  "vzVolumes": "/Volumes",
+  "vzTmp": "/private/tmp",
+  "vzVar": "/var/folders",
+  "vzPrivate": "/private",
+  "cpu": 2,
+  "memory": 2
+}
