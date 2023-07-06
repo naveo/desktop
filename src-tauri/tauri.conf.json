@@ -65,7 +65,12 @@
       "csp": null
     },
     "updater": {
-      "active": false
+      "active": true,
+      "endpoints": [
+        "https://raw.githubusercontent.com/naveo/naveo/main/updater.json"
+      ],
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDlBREE4QzkyMDUwNDZBOTUKUldTVmFnUUZrb3phbW01NTNRKzdTTUlRSURMQnlXTHFmbmNVS1kzSVZEVHpzdWk0RlROeCtSMGIK"
     },
     "windows": [
       {
