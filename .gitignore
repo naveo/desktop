@@ -25,3 +25,7 @@ dist-ssr
 
 # linux kernel and fs
 src-tauri/linux/*
+
+# naveo kits binaries
+src-tauri/binaries/*
+!src-tauri/binaries/readme.md
