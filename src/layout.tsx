@@ -1,7 +1,35 @@
+import { useState, useEffect } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
-import { ContainerIcon, ImageIcon, VolumeIcon, SettingsIcon } from './icons';
+import {
+  ContainerIcon,
+  ImageIcon,
+  VolumeIcon,
+  SettingsIcon,
+  ContextSwitchIcon,
+} from './icons';
+import { CheckContextNaveo, SwitchContextNaveo } from './utilities';
 
 export default function Layout() {
+  const [naveoContextState, setNaveoContextState] = useState(false);
+  const [naveoContextLabel, setNaveoContextLabel] = useState(
+    'not using naveo context'
+  );
+
+  const switchContext = async () => {
+    setNaveoContextState(false);
+    setNaveoContextLabel('switching context...');
+    await SwitchContextNaveo();
+    await naveoState();
+  };
+
+  const naveoState = async () => {
+    setNaveoContextState(await CheckContextNaveo());
+  };
+
+  useEffect(() => {
+    naveoState();
+  }, []);
+
   return (
     <div className="flex h-screen flex-col text-slate-400 antialiased">
       <div
@@ -62,7 +90,18 @@ export default function Layout() {
         <Outlet />
       </div>
       <div className="flex h-6 w-full cursor-default select-none  bg-slate-900">
-        <div className="w-10 bg-cyan-400"></div>
+        <button
+          className={`flex w-10 items-center justify-center ${
+            naveoContextState ? 'bg-cyan-400' : 'bg-gray-400'
+          } text-slate-900 hover:bg-cyan-200`}
+          title="Switch context to naveo"
+          onClick={() => switchContext()}
+        >
+          {/* <ContextSwitchIcon /> */}n
+        </button>
+        <text className="mx-2 font-light">
+          {naveoContextState ? 'using naveo context' : naveoContextLabel}
+        </text>
       </div>
     </div>
   );

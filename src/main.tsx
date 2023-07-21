@@ -8,10 +8,18 @@ import Images from './tabs/images';
 import Volumes from './tabs/volumes';
 import Settings from './tabs/settings';
 import { StartSidecars } from './sidecars';
+import {
+  InstallDockerCli,
+  InstallNaveoContext,
+  UpdateStoragePath,
+} from './utilities';
 
 // Disable right-click menu
 document.addEventListener('contextmenu', (e) => e.preventDefault());
 
+// Perform once at start
+UpdateStoragePath();
+InstallDockerCli().then(async () => InstallNaveoContext());
 StartSidecars();
 
 const router = createBrowserRouter([

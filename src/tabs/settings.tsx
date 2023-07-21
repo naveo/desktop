@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { open } from '@tauri-apps/api/shell';
 import { readTextFile, BaseDirectory } from '@tauri-apps/api/fs';
+import { ExternalLinkIcon } from '../icons';
 
-interface ISettigns {
+interface ISettings {
   vmlinuz: string;
   initrd: string;
   disk: string;
@@ -15,7 +17,7 @@ interface ISettigns {
 }
 
 export default function Settings() {
-  const [settings, setSettings] = useState<ISettigns>();
+  const [settings, setSettings] = useState<ISettings>();
 
   useEffect(() => {
     loadConfig();
@@ -31,8 +33,18 @@ export default function Settings() {
 
   return (
     <div className="w-full bg-gradient-to-b from-slate-700 to-slate-800 pl-6 pt-6">
-      <div className=" font-thin text-slate-200">
-        <p>GUI Setting editing unavailable in alpha build.</p>
+      <div className="font-thin text-slate-200">
+        <p className="flex">
+          In GUI settings are disabled in alpha build.&nbsp;
+          <a
+            href="#"
+            className="flex align-text-bottom text-cyan-400"
+            onClick={() => open('https://naveo.github.io/')}
+          >
+            Check FAQ&nbsp;
+            <ExternalLinkIcon />
+          </a>
+        </p>
         <table className="mt-6 w-full table-fixed text-left ">
           <thead>
             <tr>
