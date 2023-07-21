@@ -27,8 +27,8 @@ dist-ssr
 src-tauri/linux/*
 
 # other bin files
-src-tauri/bin/*
-!src-tauri/bin/readme.md
+#src-tauri/bin/*
+#!src-tauri/bin/readme.md
 
 # naveo kits binaries
 src-tauri/binaries/*
