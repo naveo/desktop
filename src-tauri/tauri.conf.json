@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "naveo",
-    "version": "0.1.0"
+    "version": "1.0.0-alpha.1"
   },
   "tauri": {
     "allowlist": {
@@ -33,6 +33,21 @@
             "name": "run-dd-command",
             "cmd": "dd",
             "args": true
+          },
+          {
+            "name": "run-ln-command",
+            "cmd": "ln",
+            "args": true
+          },
+          {
+            "name": "run-mkdir-command",
+            "cmd": "mkdir",
+            "args": true
+          },
+          {
+            "name": "run-docker-command",
+            "cmd": "/usr/local/bin/docker",
+            "args": true
           }
         ]
       },
@@ -44,12 +59,12 @@
       },
       "fs": {
         "all": true,
-        "scope": ["$HOME/**", "$RESOURCE/**"]
+        "scope": ["$HOME/**", "$RESOURCE/**", "/usr/local/bin/**"]
       }
     },
     "bundle": {
       "externalBin": ["binaries/visorkit", "binaries/portkit"],
-      "resources": ["configs/*", "linux/*", "vms/*"],
+      "resources": ["configs/*", "linux/*", "bin/*"],
       "active": true,
       "icon": [
         "icons/32x32.png",

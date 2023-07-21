@@ -1,37 +1,32 @@
 import { Command } from '@tauri-apps/api/shell';
-import { resolveResource, resourceDir } from '@tauri-apps/api/path';
-import { exists, BaseDirectory } from '@tauri-apps/api/fs';
+import { homeDir, resolveResource } from '@tauri-apps/api/path';
+import { exists } from '@tauri-apps/api/fs';
 import { Ping } from './api';
-
-async function createStorage() {
-  const resourceDirPath = await resourceDir();
-
-  const command = await new Command('run-dd-command', [
-    'if=/dev/zero',
-    `of=${resourceDirPath}/vms/storage.img`,
-    'bs=1M',
-    'seek=10G',
-    'count=0',
-  ]).execute();
-}
+import { CreateStorage, InstallNaveoContext } from './utilities';
 
 async function visorkit() {
+  const homeDirPath = await homeDir();
   const configPath = await resolveResource('configs/visorkit-config.json');
-  let storagePath = await exists('vms/storage.img', {
-    dir: BaseDirectory.Resource,
-  });
-  if (storagePath === false) {
-    await createStorage();
+
+  let storagePath = await exists(`${homeDirPath}naveo/vms/naveo.img`);
+  if (!storagePath) {
+    await CreateStorage();
   }
 
-  const command = Command.sidecar('binaries/visorkit', [configPath]);
-  await command.execute();
+  const command = await Command.sidecar('binaries/visorkit', [
+    configPath,
+  ]).execute();
+  console.log(command);
 }
 
 async function portkit() {
   const configPath = await resolveResource('configs/portkit-config.json');
-  const command = Command.sidecar('binaries/portkit', ['-config', configPath]);
-  await command.execute();
+
+  const command = await Command.sidecar('binaries/portkit', [
+    '-config',
+    configPath,
+  ]).execute();
+  console.log(command);
 }
 
 export function StartSidecars() {
