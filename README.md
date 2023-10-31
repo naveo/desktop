@@ -1,7 +1,12 @@
 # naveo desktop client
 
-This repo holds the naveo desktop client app.
+The main naveo desktop client application. This repo dose nothing by itself. It requires all the binary files to build a functional application.
 
-## Recommended IDE Setup
+#### List of required binaries:
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+- portkit
+- visorkit
+- docker
+- docker-compose
+- naveo-kernel
+- naveo-initrd.img
